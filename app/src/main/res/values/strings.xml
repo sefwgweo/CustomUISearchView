@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CustomSearchView</string>
+    <string name="search_hint">検索</string>
+</resources>

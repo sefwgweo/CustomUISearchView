@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.customsearchview.SearchViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bgColor="@{viewModel.backgroundColor}"
+                app:iconColor="@{viewModel.textColor}"
+                tools:navigationIcon="?homeAsUpIndicator">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp"
+                    android:background="@android:color/transparent"
+                    app:selectedTextColor="@{viewModel.textColor}"
+                    app:unSelectedTextColor="@{viewModel.hintTextColor}"
+                    app:overlayColor="@{viewModel.searchBoxBackgroundColor}"
+                    app:alpha="@{viewModel.searchBoxBackgroundAlpha}"
+                    app:clearColor="@{viewModel.clearColor}"
+                    app:hintText="@{@string/search_hint}"
+                    app:boxBgDrawable="@{@drawable/bg_search}"
+                    app:searchIconDrawable="@{@android:drawable/ic_input_add}"
+                    app:onQueryTextSubmit="@{(url) -> viewModel.search(url)}"
+                    app:searchHintIcon="@null"
+                    app:closeIcon="@android:drawable/ic_menu_close_clear_cancel">
+
+                    <requestFocus />
+
+                </androidx.appcompat.widget.SearchView>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </LinearLayout>
+</layout>
